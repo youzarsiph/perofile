@@ -1,0 +1,29 @@
+{% load i18n %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-grid gap-4 d-lg-flex align-items-lg-center justify-content-lg-between">
+            <button type="submit" class="btn btn-lg btn-primary d-flex align-items-center gap-4"
+                    {% if form_id %}form="{{ form_id }}"{% endif %}>
+                <i class="bi bi-save"></i>
+                {% translate 'Save' %}
+            </button>
+            {% if delete %}
+                <a href="{{ delete_url }}" class="btn btn-lg btn-danger d-flex align-items-center gap-4">
+                    <i class="bi bi-trash"></i>
+                    {% translate 'Delete' %}
+                </a>
+            {% endif %}
+            {% if reset %}
+                <button type="reset" class="btn btn-lg btn-warning d-flex align-items-center gap-4"
+                        {% if form_id %}form="{{ form_id }}"{% endif %}>
+                    <i class="bi bi-backspace-reverse"></i>
+                    {% translate 'Reset' %}
+                </button>
+            {% endif %}
+            <a href="{{ cancel_url }}" class="btn btn-lg btn-secondary d-flex align-items-center gap-4">
+                <i class="bi bi-x"></i>
+                {% translate 'Cancel' %}
+            </a>
+        </div>
+    </div>
+</div>

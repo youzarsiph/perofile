@@ -1,0 +1,25 @@
+{# Base template for structuring the HTML and extending. #}
+{% extends 'profile/base/base.html' %}
+{% load i18n %}
+{% block header %}
+    {# Navbar here #}
+    {% include 'profile/includes/components/navbar.html' %}
+{% endblock %}
+{% block main %}
+    {# Content here. #}
+    <div class="container mt-4">
+        {% block breadcrumb %}
+            <div class="card card-body mb-4">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        {% translate 'Proflie' %}
+                    </li>
+                </ol>
+            </div>
+        {% endblock %}
+        {% if messages %}
+            {% include 'profile/includes/components/messages.html' %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}

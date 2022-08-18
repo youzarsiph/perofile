@@ -1,0 +1,85 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 rounded-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'profile:home' %}">
+            {% translate 'Profile' %}
+        </a>
+        <button class="navbar-toggler collapsed p-2 rounded-circle" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    {% url 'profile:home' as home %}
+                    <a class="nav-link{% if request.path == home %} active{% endif %}"
+                       href="{{ home }}">
+                        <i class="bi bi-house-fill"></i>
+                        {% translate 'Home' %}
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-bs-toggle="dropdown" href="#">
+                        <i class="bi bi-person-circle"></i>
+                        {% translate 'Profile' %}
+                    </a>
+                    <div class="dropdown-menu shadow rounded-2">
+                        <a class="dropdown-item d-flex gap-4" href="{% url 'profile:index' %}">
+                            <i class="bi bi-house"></i>
+                            {% translate 'Home' %}
+                        </a>
+                        <a class="dropdown-item d-flex gap-4" href="{% url 'profile:dashboard' %}">
+                            <i class="bi bi-gear"></i>
+                            {% translate 'Dashboard' %}
+                        </a>
+                        <a class="dropdown-item d-flex gap-4" href="{% url 'profile:change_password' %}">
+                            <i class="bi bi-key"></i>
+                            {% translate 'Change Password' %}
+                        </a>
+                        <a class="dropdown-item d-flex gap-4" href="{% url 'profile:reset_password' %}">
+                            <i class="bi bi-lock"></i>
+                            {% translate 'Reset Password' %}
+                        </a>
+                        {% if request.user.is_authenticated %}
+                            <a class="dropdown-item d-flex gap-4" href="{% url 'profile:edit_user' request.user.id %}">
+                                <i class="bi bi-pencil"></i>
+                                {% translate 'Edit Account' %}
+                            </a>
+                            <a class="dropdown-item d-flex gap-4"
+                               href="{% url 'profile:delete_user' request.user.id %}">
+                                <i class="bi bi-trash"></i>
+                                {% translate 'Delete Account' %}
+                            </a>
+                        {% else %}
+                            <a class="dropdown-item d-flex gap-4" href="{% url 'profile:login' %}">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                {% translate 'Login for more' %}
+                            </a>
+                        {% endif %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/youzarsiph/profile.git">
+                        <i class="bi bi-github"></i>
+                        {% translate 'Github' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% if request.user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'profile:logout' %}">
+                            <i class="bi bi-power"></i>
+                            {% translate 'Log out' %}
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'profile:login' %}">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            {% translate 'Login' %}
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

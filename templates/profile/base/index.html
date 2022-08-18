@@ -1,0 +1,14 @@
+{% extends 'profile/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Profile Home' %}{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Profile' %}
+    </h1>
+    <p class="lead mb-4">
+        {% blocktranslate %}
+            Profile is a reusable Django app that provides custom templates to override default authentication templates.
+        {% endblocktranslate %}
+    </p>
+{% endblock %}

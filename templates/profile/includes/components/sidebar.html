@@ -1,0 +1,78 @@
+{% load i18n %}
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg align-items-lg-start h-100 rounded-3">
+    <div class="container flex-lg-column align-items-lg-start h-100 w-100">
+        <button class="navbar-toggler rounded-circle p-2" data-bs-toggle="collapse" data-bs-target="#sidebar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-lg-none me-0" href="#">
+            {% translate 'Menu' %}
+        </a>
+        <ul class="navbar-nav flex-row flex-lg-column order-lg-last mt-lg-auto w-lg-100">
+            <li class="nav-item px-3 px-lg-0 py-lg-2">
+                <a class="nav-link d-flex gap-4" href="{% url 'profile:index' %}">
+                    <i class="bi bi-person-circle"></i>
+                    <span class="d-none d-lg-inline">
+                        {% translate 'Account' %}
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item d-none d-lg-block">
+                <a class="nav-link d-flex gap-4" href="{% url 'profile:logout' %}">
+                    <i class="bi bi-power"></i>
+                    {% translate 'Log out' %}
+                </a>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse mb-auto align-items-lg-start w-100" id="sidebar">
+            <ul class="navbar-nav flex-lg-column w-100">
+                <li class="nav-item">
+                    {% url 'profile:dashboard' as dashboard %}
+                    <a class="nav-link d-flex gap-4{% if request.path == dashboard %} active{% endif %}"
+                       href="{{ dashboard }}">
+                        <i class="bi bi-house"></i>
+                        {% translate 'Home' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex gap-4" href="#">
+                        <i class="bi bi-link"></i>
+                        {% translate 'Link' %}
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link d-flex gap-4" href="#" id="navbarDropdown2" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-menu-app"></i>
+                        {% translate 'Dropdown' %}
+                    </a>
+                    <ul class="dropdown-menu position-lg-static" aria-labelledby="navbarDropdown2">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                {% translate 'Action' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                {% translate 'Another action' %}
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                {% translate 'Something else here' %}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex gap-4 disabled" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="bi bi-slash"></i>
+                        {% translate 'Disabled' %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

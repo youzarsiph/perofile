@@ -1,0 +1,33 @@
+{% extends 'profile/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Password Chnage Done' %}{% endblock %}
+{% block breadcrumb %}
+    <div class="card card-body mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a href="{% url 'profile:index' %}">
+                    {% translate 'Profile' %}
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'profile:change_password' %}">
+                    {% translate 'Password Change' %}
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                {% translate 'Done' %}
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Password change successful' %}
+    </h1>
+    <p class="col-md-8 fs-4">
+        {% translate 'Your password was changed.' %}
+    </p>
+    <a class="btn btn-primary btn-lg" role="button" href="{% url 'profile:login' %}">
+        {% translate 'Login' %}
+    </a>
+{% endblock %}

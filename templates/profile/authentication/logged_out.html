@@ -1,0 +1,12 @@
+{% extends 'profile/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Logged out' %}{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Logged out' %}
+    </h1>
+    <p class="lead fs-3">
+        {% translate 'Thanks for your time.' %}
+    </p>
+{% endblock %}

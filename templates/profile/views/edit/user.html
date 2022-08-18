@@ -1,0 +1,38 @@
+{% extends 'profile/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Edit account' %}{% endblock %}
+{% block breadcrumb %}
+    <div class="card card-body mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a href="{% url 'profile:index' %}">
+                    {% translate 'Profile' %}
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                {% translate 'Edit' %}
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Edit account' %}
+    </h1>
+    <div class="alert alert-info d-flex align-items-center gap-4 alert-dismissible fade show">
+        <span class="badge bg-info rounded-pill">
+            <i class="bi bi-info fs-2"></i>
+        </span>
+        <div class="alert-content">
+            {% translate 'If you want to change your password, ' %}
+            <a href="{% url 'profile:change_password' %}" class="alert-link">
+                {% translate 'Change password.' %}
+            </a>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% include 'profile/includes/utilties/form.html' with form_tag=1 method='post' floating_labels=1 %}
+    {% url 'profile:index' as url %}
+    {% url 'profile:delete_user' request.user.id as uri %}
+    {% include 'profile/includes/utilties/save_submit.html' with form_id='form' reset=1 delete=1 cancel_url=url delete_url=uri %}
+{% endblock %}

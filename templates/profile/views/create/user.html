@@ -1,0 +1,10 @@
+{% extends 'profile/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Register' %}{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Register' %}
+    </h1>
+    {% include 'profile/includes/utilties/form.html' with as_row=1 form_tag=1 %}
+    {% include 'profile/includes/utilties/submit.html' with form_id='form' %}
+{% endblock %}

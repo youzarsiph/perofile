@@ -1,0 +1,41 @@
+{% extends 'profile/base/base_site.html' %}
+{% load i18n static %}
+{% block body_attrs %}class="overflow-lg-hidden vh-lg-100"{% endblock %}
+{% block main %}
+    <div class="d-flex flex-column flex-lg-row h-100">
+        <div class="col-12 col-lg-3 sidebar ps-1 pe-1 pe-lg-0 pb-1">
+            {% include 'profile/includes/components/sidebar.html' %}
+        </div>
+        <div class="col-12 col-lg-9 sidebar overflow-y-lg-auto">
+            <div class="container pt-4 pt-lg-0">
+                <nav aria-label="breadcrumb" class="card card-body mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'profile:index' %}">
+                                {% translate 'Home' %}
+                            </a>
+                        </li>
+                        {% block breadcrumb %}
+                            <li class="breadcrumb-item active">
+                                {% translate 'Dashboard' %}
+                            </li>
+                        {% endblock %}
+                    </ol>
+                </nav>
+                {% if messages %}
+                    {% include 'profile/includes/components/messages.html' %}
+                {% endif %}
+                {% block content %}
+                    <h1 class="display-1">
+                        {% translate 'Welcome to Dashborad' %}
+                    </h1>
+                    <p class="lead">
+                        {% blocktranslate %}
+                            Customization is up to you.
+                        {% endblocktranslate %}
+                    </p>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
